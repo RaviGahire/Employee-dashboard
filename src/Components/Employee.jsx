@@ -1,13 +1,27 @@
 import React from 'react'
-
+import { motion } from 'motion/react';
 
 export const Employee = ({ employees }) => {
 
-for (let i = 0; i < employees.length; i++) {
-  console.log(employees[i].name);
-}
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+
+  for (let i = 0; i < employees.length; i++) {
+    console.log(employees[i].name);
+  }
   const imgUrl = "https://www.w3schools.com/howto/img_avatar.png";
-    
+
 
 
 
@@ -19,7 +33,14 @@ for (let i = 0; i < employees.length; i++) {
         employees.map((emp, index) => {
           return (
             <>
-              <div className="max-w-sm mx-auto bg-gradient-to-br from-blue-100 to-blue-300 shadow-2xl rounded-xl overflow-hidden mt-12 border border-blue-200">
+              <motion.div key={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                custom={index} // pass index for stagger
+
+                className="max-w-sm mx-auto bg-gradient-to-br from-blue-100 to-blue-300 shadow-2xl rounded-xl overflow-hidden mt-12 border border-blue-200">
 
                 <div className="flex flex-col items-center pt-8 pb-4 px-6">
                   <img
@@ -52,7 +73,7 @@ for (let i = 0; i < employees.length; i++) {
                     Message
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </>
           )
         })
