@@ -2,22 +2,78 @@ import React from 'react'
 import { Employee } from './Components/Employee'
 import employees from './data/empData'
 import Header from './Components/Header'
+import { em } from 'motion/react-client'
+
+
 
 export class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      employees: employees
+      allEmployees: employees,
+      employees: employees,
+
     }
-  }   
+  }
+
+  DepartmentSelection = (event) => {
+    // Get the selected department value
+    const OptionValue = event.target.value;
+    console.log(OptionValue);
+    if (OptionValue === "All") {
+      this.setState({ employees: this.state.allEmployees });
+    } else {
+      const filteredDept = this.state.allEmployees.filter((emp) => emp.department === OptionValue);
+      this.setState({ employees: filteredDept });
+    }
+  
+  }
+
+
+
+
+
 
   render() {
     return (
       <>
         <Header />
-       <div className="flex items-center flex-col md:flex-row md:justify-center flex-wrap bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen p-4">
-         <Employee employees={this.state.employees} />
-       </div>
+        {/* Action Buttons */}
+        <div className="container bg-amber-200 h-20 mx-auto flex items-center justify-between space-x-4 mt-6 rounded-lg shadow-lg">
+          <div>
+            <select onChange={this.DepartmentSelection} className="bg-gradient-to-r from-green-400 to-green-600 text-white font-semibold py-2 px-4 rounded-lg ml-4 cursor-pointer shadow focus:outline-none focus:ring-2 focus:ring-green-300 transition">
+              <option defaultValue="All Dept" disabled hidden className="bg-white text-green-700 font-bold">
+                Department View
+              </option>
+              <option className="bg-white text-green-700 font-semibold" value="All">All Dept</option>
+              <option className="bg-white text-green-700 font-semibold" value="HR">HR</option>
+              <option className="bg-white text-green-700 font-semibold" value="Engineering">Engineering</option>
+              <option className="bg-white text-green-700 font-semibold" value="Marketing">Marketing</option>
+              <option className="bg-white text-green-700 font-semibold" value="Finance">Finance</option>
+              <option className="bg-white text-green-700 font-semibold" value="Sales">Sales</option>
+            </select>
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg ml-4 cursor-pointer">
+              View Employee
+            </button>
+          </div>
+
+          <div>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer">
+              Add Employee
+            </button>
+            <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg ml-4 cursor-pointer">
+              Remove Employee
+            </button>
+          </div>
+
+
+
+
+        </div>
+        {/* Employee List */}
+        <div className="flex items-center flex-col md:flex-row md:justify-center flex-wrap bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen p-4">
+          <Employee employees={this.state.employees} />
+        </div>
       </>
     )
   }
