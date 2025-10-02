@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="bg-blue-600 shadow-lg">
-      <nav className="container mx-auto flex items-center justify-between py-4 px-6">
+    <header className="bg-blue-600 shadow-lg ">
+      <nav className="container mx-auto flex items-center justify-between py-4 px-6  md:fex-row flex-col md:space-y-0 space-y-4">
         <div className="text-white text-2xl font-bold tracking-wide">
           Employee Dashboard
         </div>
