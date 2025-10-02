@@ -39,8 +39,7 @@ export const Employee = ({ employees }) => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 custom={index} // pass index for stagger
-
-                className="max-w-sm mx-auto bg-gradient-to-br from-blue-100 to-blue-300 shadow-2xl rounded-xl overflow-hidden mt-12 border border-blue-200">
+                className="max-w-sm mx-auto bg-gradient-to-tr from-neutral-300 to-neutral-800 shadow-2xl rounded-xl overflow-hidden mt-12 border border-blue-200">
 
                 <div className="flex flex-col items-center pt-8 pb-4 px-6">
                   <img
@@ -48,8 +47,8 @@ export const Employee = ({ employees }) => {
                     alt={emp.name}
                     className="w-28 h-28 rounded-full border-4 border-blue-400 shadow-lg mb-4 object-cover"
                   />
-                  <h5 className="text-blue-700 text-2xl font-bold mb-1">{emp.name}</h5>
-                  <span className="text-sm text-blue-500 font-medium mb-2">{emp.department}</span>
+                  <h5 className="text-slate-50 text-2xl font-semibold mb-1">{emp.name}</h5>
+                  <span className="text-sm text-lime-500 font-medium mb-2">{emp.department}</span>
                 </div>
                 <div className="bg-white px-8 py-6 rounded-b-xl">
                   <div className="space-y-3">
@@ -66,12 +65,17 @@ export const Employee = ({ employees }) => {
                       <span className="text-green-600 font-bold">${emp.salary}</span>
                     </div>
                   </div>
-                  <button className=" cursor-pointer mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition duration-200">
+                  <motion.button
+                     whileHover={{ scale: 1.1 }}
+                  
+                  className=" cursor-pointer mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition duration-200">
                     Email
-                  </button>
-                  <button className=" cursor-pointer mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition duration-200">
+                  </motion.button>
+                  <motion.button 
+                   whileHover={{ scale: 1.1 }}
+                  className=" cursor-pointer mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow transition duration-200">
                     Message
-                  </button>
+                  </motion.button>
                 </div>
               </motion.div>
             </>
